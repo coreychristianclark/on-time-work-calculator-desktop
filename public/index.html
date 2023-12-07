@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="script.js" defer></script>
+    
+
+    <title>On-Time Work Calculator</title>
+</head>
+
+<body>
+    <div id="transparentBackgroundContainer">
+
+    <h1>On-Time Work <br>
+      Calculator</h1>
+    <h4>Fill out the required fields below to determine what time you must go to sleep and wake up to get your desired hours of sleep and make it to work on time.</h4>
+    
+    <div id="topRowContainer">
+
+    <div class="topRowPair">
+    <label id="desiredHoursOfSleepText">Desired Hours of Sleep</label>
+    <input type="text" class="desiredHoursOfSleepInput topInputWindow" placeholder="ex. hh:mm">
+    </div> 
+
+    <div class="topRowPair">
+    <label id="desiredArrivalTimeText">Desired Arrival Time</label>
+    <input type="text" class="desiredArrivalTimeInput topInputWindow" placeholder="ex. 12:34am/pm">
+    </div>
+
+    <div class="topRowPair">
+    <label id="lengthOfMorningRoutineText">Length of Morning Routine</label>
+    <input type="text" class="timeInput lengthOfMorningRoutineInput topInputWindow" placeholder="hh:mm format">
+    </div>
+
+</div>
+
+
+<div id="bottomRowContainer">
+
+    <div class="bottomRowPair">
+    <label id="startText">Start</label>
+    <input type="text" class="startInput autocomplete" placeholder="starting address">
+    </div>
+
+    <div class="bottomRowPair">
+    <label id="endText">End</label>
+    <input type="text" class="endInput autocomplete" placeholder="destination address">
+    </div>
+
+</div>
+
+<div id="buttonContainer">
+<form><button id="calculate">Calculate</button></form>
+
+
+<button id="reset">Reset</button>
+
+<!-- Commented-out TEST button for test purposes only. -->
+<!-- <button id="test">Test</button> -->
+
+</div>
+
+<p>In order for you to obtain <span id="hoursOfSleep">X</span> hours of sleep and arrive at your location by <span id="arrivalTime">X</span>, you will need to go to bed at <span id="bedTime">X</span> and wake up at <span id="wakeUpTime">X</span>.</p>
+
+<div id="matrixResultsContainer">
+
+    <div id="milesToDestination">Miles to Destination: <span id="matrixMilesToDestination">0</span></div>
+    <div id="driveTime">Drive Time: <span id="matrixDriveTime">0</span></div>
+    
+</div>
+
+</div>
+
+<div id="map"></div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9rRnipP8UD19ZYRninfpDTMStk7bubqw&libraries=places&callback=initMap">
+</script>
+
+</body>
+</html>

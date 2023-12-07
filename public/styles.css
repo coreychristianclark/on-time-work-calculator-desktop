@@ -1,0 +1,123 @@
+body {
+    font-family: sans-serif;
+    background-color: lavender; /* Backup background color. */
+    background-image: url('assets/adrian-background-unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-left: 10em;
+    margin-right: 10em;
+    padding-bottom: 1em;
+    margin-top: -1em;
+}
+
+#transparentBackgroundContainer {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 3%;
+}
+
+h1 {
+    font-size: 4em;
+    text-align: center;
+    color: white;
+    padding-top: 0.5em;
+}
+
+h4 {
+    font-size: 2em;
+    text-align: center;
+    color:rgb(247, 216, 242);
+}
+
+p {
+    font-size: 2.5em;
+    text-align: center;
+    color:rgb(211, 255, 253);
+}
+
+#topRowContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.topRowPair {
+    display: flex;
+    font-size: 1.5em;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topInputWindow {
+    width: 100%;
+    font-size: 0.7em;
+    text-align: center;
+    margin-top: 0.2em;
+}
+
+#bottomRowContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.bottomRowPair {
+    display: flex;
+    font-size: 1.5em;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottomInputWindow {
+    font-size: 0.7em;
+    text-align: center;
+    margin-top: 0.2em;
+}
+
+.autocomplete {
+    text-align: center;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+}
+
+#calculate {
+    height: 3em;
+    width: 6em;
+    margin-right: 0.5em;
+}
+
+#reset {
+    height: 3em;
+    width: 6em;
+    margin-left: 0.5em;
+}
+
+#matrixResultsContainer {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 0.3em;
+    padding-bottom: 1em;
+    color:rgb(255, 248, 252)
+}
+
+#milesToDestination {
+    justify-content: center;
+    margin-bottom: 0.5em;
+}
+
+#map {
+    width: 100%;
+    height: 30em;
+}
