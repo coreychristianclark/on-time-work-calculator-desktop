@@ -1,4 +1,4 @@
-On-Time Work Calculator Desktop
+# On-Time Work Calculator Desktop
 
 A calculator designed to help you maximize your sleep and show up on-time for work.
 
