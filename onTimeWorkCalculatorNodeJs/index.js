@@ -7,30 +7,69 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 const app = express();
+const apiKey = process.env.API_KEY;
 
 app.use(
   cors({
-    origin: "https://coreychristianclark.github.io/on-time-work-calculator/",
+    origin: [
+      "http://localhost:3000",
+      "https://coreychristianclark.github.io",
+      "https://optimal-sleep-calculator-map.uk.r.appspot.com",
+    ],
+    methods: ["GET", "POST", "PUT"],
+    allowedHeaders: ["Content-Type"],
   })
 );
-app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "public", "index.html")));
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self';" +
+      "connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://optimal-sleep-calculator-map.uk.r.appspot.com;" +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://maps.gstatic.com;" +
+      "img-src 'self' data: https://maps.googleapis.com https://maps.gstatic.com;" +
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;" +
+      "font-src 'self' https://fonts.gstatic.com;"
+  );
+  next();
+});
+
+app.get("/api/getGoogleMapsApiKey", (req, res) => {
+  if (apiKey) {
+    res.json({ apiKey: apiKey });
+  } else {
+    console.error("Error: API Key not found.");
+    res.status(500).send("API Key not available.");
+  }
+});
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
 
 app.get("/api/route", async (req, res) => {
+  console.log("hi");
   const { start, end } = req.query;
-  const apiKey = process.env.API_KEY;
-  console.log(apiKey);
-  const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${start}&destinations=${end}&units=imperial&key=${apiKey}`;
+  const encodedStart = encodeURIComponent(start);
+  const encodedEnd = encodeURIComponent(end);
+  const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodedStart}&destinations=${encodedEnd}&units=imperial&key=${apiKey}`;
+  console.log("hello?");
 
   try {
     const response = await fetch(apiUrl);
+
     if (!response.ok) {
       throw new Error("Network response was not ok.");
     }
+
     const data = await response.json();
+
+    res.setHeader("Content-Type", "application/json");
     res.json(data);
   } catch (error) {
     console.error("Error fetching data from Distance Matrix API:", error);

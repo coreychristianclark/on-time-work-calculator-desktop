@@ -1,3 +1,25 @@
+document.addEventListener("DOMContentLoaded", () => {
+  loadGoogleMapsApi();
+});
+
+function loadGoogleMapsApi() {
+  fetch("/api/getGoogleMapsApiKey")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${data.apiKey}&libraries=places&callback=initMap`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    })
+    .catch((error) => console.error("Error fetching API key:", error));
+}
+
 const form = document.querySelector("form");
 const reset = document.querySelector("#reset");
 const hoursOfSleep = document.querySelector("#hoursOfSleep");
@@ -30,14 +52,13 @@ let directionsService;
 let directionsRenderer;
 let startAutocomplete, endAutocomplete;
 
-function initMap() {
+window.initMap = () => {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 39.8097343, lng: -98.5556199 },
     zoom: 4.2,
   });
-
   initAutocomplete();
-}
+};
 
 function initAutocomplete() {
   const inputs = document.querySelectorAll(".autocomplete");
@@ -65,15 +86,18 @@ function initAutocomplete() {
       fetch(serverUrl)
         .then((response) => {
           if (!response.ok) {
-            throw new Error("Error: Network response was not ok.");
+            throw new Error(`HTTP error! status: ${response.status}`);
           }
+
+          if (response.status === 204) {
+            return null;
+          }
+
           return response.json();
         })
+
         .then((data) => {
-          if (
-            data.status === "OK" &&
-            data.rows[0].elements[0].status === "OK"
-          ) {
+          if (data && data.status && data.rows[0].elements[0].status === "OK") {
             const distance = data.rows[0].elements[0].distance.text;
             duration = data.rows[0].elements[0].duration.text;
 
@@ -84,6 +108,7 @@ function initAutocomplete() {
           }
           resolve(duration);
         })
+
         .catch((error) => {
           console.error("Error fetching data from Distance Matrix API:", error);
           reject(error);
@@ -373,20 +398,20 @@ function initAutocomplete() {
   //   desiredHoursOfSleepInput.value = "8:00";
   //   desiredArrivalTimeInput.value = "9:00am";
   //   lengthOfMorningRoutineInput.value = "1:00";
-  //   startInputElement.value = "Cecil, PA";
+  //   startInputElement.value = "Washington, PA";
   //   endInputElement.value = "Nebraska, USA";
   //   form.dispatchEvent(new Event("submit"));
   // });
 
   // TEST commented-out code for troubleshooting purposes only (close distance).
 
-  //   const test = document.querySelector("#test");
-  //   test.addEventListener("click", (e) => {
-  //     desiredHoursOfSleepInput.value = "8:00";
-  //     desiredArrivalTimeInput.value = "9:00am";
-  //     lengthOfMorningRoutineInput.value = "1:00";
-  //     startInputElement.value = "Cecil, PA";
-  //     endInputElement.value = "1784 Theodan Drive, PA";
-  //     form.dispatchEvent(new Event("submit"));
-  //   });
+  // const test = document.querySelector("#test");
+  // test.addEventListener("click", (e) => {
+  //   desiredHoursOfSleepInput.value = "8:00";
+  //   desiredArrivalTimeInput.value = "9:00am";
+  //   lengthOfMorningRoutineInput.value = "1:00";
+  //   startInputElement.value = "Washington, PA";
+  //   endInputElement.value = "Pittsburgh, PA";
+  //   form.dispatchEvent(new Event("submit"));
+  // });
 }
