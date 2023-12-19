@@ -255,9 +255,9 @@ function initAutocomplete() {
     let wakeUpTimeInMinutes = arrivalInMinutes - totalTimeRequired;
     let bedTimeInMinutes = wakeUpTimeInMinutes - sleepDurationInMinutes;
 
-// Adjust for wake up time for the next day if it's negative.
+    // Adjust for wake up time for the next day if it's negative.
     if (wakeUpTimeInMinutes < 0) {
-      wakeUpTimeInMinutes += 24 * 60
+      wakeUpTimeInMinutes += 24 * 60;
     }
 
     // Adjust bedtime for the next day if it's negative.
@@ -284,11 +284,7 @@ function initAutocomplete() {
     wakeUpTime.innerText = "X";
   }
 
-  reset.addEventListener("click", (e) => {
-    resetDisplay();
-    desiredHoursOfSleepInput.value = "";
-    desiredArrivalTimeInput.value = "";
-    lengthOfMorningRoutineInput.value = "";
+  function resetMapAndRoute() {
     startInputElement.value = "";
     endInputElement.value = "";
     matrixMilesToDestination.innerText = 0;
@@ -298,6 +294,14 @@ function initAutocomplete() {
     }
     map.setCenter({ lat: 39.8097343, lng: -98.5556199 });
     map.setZoom(4.2);
+  }
+
+  reset.addEventListener("click", (e) => {
+    resetDisplay();
+    resetMapAndRoute();
+    desiredHoursOfSleepInput.value = "";
+    desiredArrivalTimeInput.value = "";
+    lengthOfMorningRoutineInput.value = "";
   });
 
   // Beginning of FORM.
@@ -334,8 +338,26 @@ function initAutocomplete() {
       return;
     }
 
-    const startInput = startInputElement.value;
-    const endInput = endInputElement.value;
+    let startInput = startInputElement.value;
+    let endInput = endInputElement.value;
+
+    if (startInput === "") {
+      console.error("Error: Start destination cannot be blank.");
+      alert("Please enter a starting destination.");
+      startInput = null;
+      resetDisplay();
+      resetMapAndRoute();
+      return;
+    }
+
+    if (endInput === "") {
+      console.error("Error: End destination cannot be blank.");
+      alert("Please enter an end destination.");
+      endInput = null;
+      resetDisplay();
+      resetMapAndRoute();
+      return;
+    }
 
     const duration = await calculateDistanceAndDuration(startInput, endInput);
     const numericDuration = parseDuration(duration);
@@ -345,25 +367,25 @@ function initAutocomplete() {
     calculateDistanceAndDuration(startInput, endInput);
 
     const desiredArrivalInMinutes = parseTime(desiredArrivalTimeInput.value);
-    let morningRoutineInMinutes =
-      parseTime(lengthOfMorningRoutineInput.value);
-    let desiredHoursOfSleepInMinutes = parseTime(desiredHoursOfSleepInput.value)
+    let morningRoutineInMinutes = parseTime(lengthOfMorningRoutineInput.value);
+    let desiredHoursOfSleepInMinutes = parseTime(
+      desiredHoursOfSleepInput.value
+    );
     const durationInMinutes = parseDuration(duration);
 
-    if (desiredHoursOfSleepInMinutes > 1200) {
-      console.error("Error: Desired Hours of Sleep exceeds 20 hours.");
-      alert("Desired Hours of Sleep cannot exceed 20 hours.")
+    if (desiredHoursOfSleepInMinutes > 960) {
+      console.error("Error: Desired Hours of Sleep exceeds 16 hours.");
+      alert("Desired Hours of Sleep cannot exceed 16 hours.");
       desiredHoursOfSleepInMinutes = null;
+      resetDisplay();
       return;
     }
-console.log(desiredHoursOfSleepInMinutes)
-          console.log(morningRoutineInMinutes);
-
 
     if (morningRoutineInMinutes > 300) {
       console.error("Error: Morning Routine exceeds 5 hours.");
       alert("Morning routine cannot exceed 5 hours.");
       morningRoutineInMinutes = null;
+      resetDisplay();
       return;
     }
 
