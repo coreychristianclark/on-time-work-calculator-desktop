@@ -255,15 +255,12 @@ function initAutocomplete() {
     let wakeUpTimeInMinutes = arrivalInMinutes - totalTimeRequired;
     let bedTimeInMinutes = wakeUpTimeInMinutes - sleepDurationInMinutes;
 
-    // Check if the schedule is infeasible (wake-up time being a negative value).
+// Adjust for wake up time for the next day if it's negative.
     if (wakeUpTimeInMinutes < 0) {
-      console.error(
-        "Error: Infeasible schedule due to a negative wake-up time."
-      );
-      return { wakeUpTimeInMinutes: null, bedTimeInMinutes: null };
+      wakeUpTimeInMinutes += 24 * 60
     }
 
-    // Adjust bedtime for the next day if it's negative
+    // Adjust bedtime for the next day if it's negative.
     if (bedTimeInMinutes < 0) {
       bedTimeInMinutes += 24 * 60;
     }
@@ -296,7 +293,9 @@ function initAutocomplete() {
     endInputElement.value = "";
     matrixMilesToDestination.innerText = 0;
     matrixDriveTime.innerText = 0;
-    directionsRenderer.setDirections({ routes: [] });
+    if (directionsRenderer) {
+      directionsRenderer.setDirections({ routes: [] });
+    }
     map.setCenter({ lat: 39.8097343, lng: -98.5556199 });
     map.setZoom(4.2);
   });
@@ -346,12 +345,23 @@ function initAutocomplete() {
     calculateDistanceAndDuration(startInput, endInput);
 
     const desiredArrivalInMinutes = parseTime(desiredArrivalTimeInput.value);
-    const morningRoutineInMinutes =
-      parseFloat(lengthOfMorningRoutineInput.value) * 60;
+    let morningRoutineInMinutes =
+      parseTime(lengthOfMorningRoutineInput.value);
+    let desiredHoursOfSleepInMinutes = parseTime(desiredHoursOfSleepInput.value)
     const durationInMinutes = parseDuration(duration);
 
-    if (morningRoutineInMinutes > 240) {
-      console.error("Error: Morning Routine cannot exceed 5 hours.");
+    if (desiredHoursOfSleepInMinutes > 1200) {
+      console.error("Error: Desired Hours of Sleep exceeds 20 hours.");
+      alert("Desired Hours of Sleep cannot exceed 20 hours.")
+      desiredHoursOfSleepInMinutes = null;
+      return;
+    }
+console.log(desiredHoursOfSleepInMinutes)
+          console.log(morningRoutineInMinutes);
+
+
+    if (morningRoutineInMinutes > 300) {
+      console.error("Error: Morning Routine exceeds 5 hours.");
       alert("Morning routine cannot exceed 5 hours.");
       morningRoutineInMinutes = null;
       return;
@@ -405,13 +415,13 @@ function initAutocomplete() {
 
   // TEST commented-out code for troubleshooting purposes only (close distance).
 
-  // const test = document.querySelector("#test");
-  // test.addEventListener("click", (e) => {
-  //   desiredHoursOfSleepInput.value = "8:00";
-  //   desiredArrivalTimeInput.value = "9:00am";
-  //   lengthOfMorningRoutineInput.value = "1:00";
-  //   startInputElement.value = "Washington, PA";
-  //   endInputElement.value = "Pittsburgh, PA";
-  //   form.dispatchEvent(new Event("submit"));
-  // });
+  const test = document.querySelector("#test");
+  test.addEventListener("click", (e) => {
+    desiredHoursOfSleepInput.value = "1:00";
+    desiredArrivalTimeInput.value = "12:00am";
+    lengthOfMorningRoutineInput.value = "5:01";
+    startInputElement.value = "Washington, PA";
+    endInputElement.value = "Pittsburgh, PA";
+    form.dispatchEvent(new Event("submit"));
+  });
 }
