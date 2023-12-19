@@ -81,7 +81,7 @@ function initAutocomplete() {
   function calculateDistanceAndDuration(start, end) {
     return new Promise((resolve, reject) => {
       let duration;
-      const serverUrl = `https://optimal-sleep-calculator-map.uk.r.appspot.com/api/route?start=${start}&end=${end}`;
+      const serverUrl = `https://ontimeworkcalculatordesktop.vercel.app/api/route?start=${start}&end=${end}`;
 
       fetch(serverUrl)
         .then((response) => {

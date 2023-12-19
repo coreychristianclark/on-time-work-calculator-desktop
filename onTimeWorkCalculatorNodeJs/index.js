@@ -16,6 +16,7 @@ app.use(
       "http://localhost:3000",
       "https://coreychristianclark.github.io",
       "https://optimal-sleep-calculator-map.uk.r.appspot.com",
+      "https://ontimeworkcalculatordesktop.vercel.app",
     ],
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type"],
@@ -48,17 +49,14 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url}`);
   next();
 });
 
 app.get("/api/route", async (req, res) => {
-  console.log("hi");
   const { start, end } = req.query;
   const encodedStart = encodeURIComponent(start);
   const encodedEnd = encodeURIComponent(end);
   const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodedStart}&destinations=${encodedEnd}&units=imperial&key=${apiKey}`;
-  console.log("hello?");
 
   try {
     const response = await fetch(apiUrl);
@@ -72,7 +70,6 @@ app.get("/api/route", async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.json(data);
   } catch (error) {
-    console.error("Error fetching data from Distance Matrix API:", error);
     res.status(500).send("Error fetching data.");
   }
 });
