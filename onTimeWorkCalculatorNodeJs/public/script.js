@@ -390,8 +390,12 @@ function initAutocomplete() {
     }
 
     if (
-      durationInMinutes > 1440 ||
-      durationInMinutes + morningRoutineInMinutes > 1440
+      durationInMinutes ||
+      durationInMinutes + morningRoutineInMinutes ||
+      durationInMinutes +
+        morningRoutineInMinutes +
+        desiredHoursOfSleepInMinutes >
+        1440
     ) {
       handleInfeasibleSchedule();
       return;
@@ -437,13 +441,13 @@ function initAutocomplete() {
 
   // TEST commented-out code for troubleshooting purposes only (close distance).
 
-  const test = document.querySelector("#test");
-  test.addEventListener("click", (e) => {
-    desiredHoursOfSleepInput.value = "1:00";
-    desiredArrivalTimeInput.value = "12:00am";
-    lengthOfMorningRoutineInput.value = "5:01";
-    startInputElement.value = "Washington, PA";
-    endInputElement.value = "Pittsburgh, PA";
-    form.dispatchEvent(new Event("submit"));
-  });
+  // const test = document.querySelector("#test");
+  // test.addEventListener("click", (e) => {
+  //   desiredHoursOfSleepInput.value = "16:00";
+  //   desiredArrivalTimeInput.value = "12:00am";
+  //   lengthOfMorningRoutineInput.value = "5:00";
+  //   startInputElement.value = "Washington";
+  //   endInputElement.value = "Pittsburgh, PA";
+  //   form.dispatchEvent(new Event("submit"));
+  // });
 }
