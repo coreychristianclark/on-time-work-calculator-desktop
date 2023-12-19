@@ -2,6 +2,8 @@
 
 A calculator designed to help you maximize your sleep and show up on-time for work.
 
+***Please Note: Functionality of this app cannot be guaranteed when used in conjunction with ad blockers and/or VPN services.***
+
 Obtaining enough sleep in our daily life is absolutely crucial to not only our wellbeing, but our mental clarity as well. Too many people either take their sleep for granted, or don't plan accordingly to ensure they get enough of it. Functioning at peak performance becomes a challenging obstacle when you're low on sleep and feeling physically and mentally sluggish, torpid, and lethargic.
 
 In my role as an electrician, a frequent challenge is the need to switch between various job sites with different locations, start times, and shifts -- often within the same week or even daily. When I get such news, my very first question is, "What does my bedtime have to be tonight in order to get the desired hours of sleep I need to function at peak performance? Let me check where the location is, how far it is from my place, how long it'll take to get there, what time I have to wake up in the morning to get there with 15-20min grace," and so forth. It's a lot of calculating, and I've been doing it on paper for years, which isn't the most fun activity. Not to mention the amount of time I waste double and triple-checking the math.
