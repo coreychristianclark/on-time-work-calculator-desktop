@@ -1,3 +1,21 @@
+const apiKey = process.env.API_KEY;
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: apiKey,
+  authDomain: "optimal-sleep-calculator-map.firebaseapp.com",
+  projectId: "optimal-sleep-calculator-map",
+  storageBucket: "optimal-sleep-calculator-map.appspot.com",
+  messagingSenderId: "930487657988",
+  appId: "1:930487657988:web:74a9604a661455f88e3751",
+  measurementId: "G-RXL88FHDZE",
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebaseApp);
+
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -8,7 +26,6 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const apiKey = process.env.API_KEY;
 
 app.use(
   cors({

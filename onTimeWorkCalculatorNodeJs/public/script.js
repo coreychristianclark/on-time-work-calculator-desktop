@@ -1,19 +1,3 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDNpVlyhvtz1b3dLeDIuctQqPikgT3x3qU",
-  authDomain: "optimal-sleep-calculator-map.firebaseapp.com",
-  projectId: "optimal-sleep-calculator-map",
-  storageBucket: "optimal-sleep-calculator-map.appspot.com",
-  messagingSenderId: "930487657988",
-  appId: "1:930487657988:web:74a9604a661455f88e3751",
-  measurementId: "G-RXL88FHDZE",
-};
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
 document.addEventListener("DOMContentLoaded", () => {
   loadGoogleMapsApi();
 });
