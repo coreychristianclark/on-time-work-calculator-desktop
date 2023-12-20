@@ -16,7 +16,6 @@ app.use(
       "http://localhost:3000",
       "https://coreychristianclark.github.io",
       "https://optimal-sleep-calculator-map.uk.r.appspot.com",
-      "https://ontimeworkcalculatordesktop.vercel.app",
     ],
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type"],
