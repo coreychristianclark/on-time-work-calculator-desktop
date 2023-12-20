@@ -15,7 +15,7 @@
     }
   ],
   "hosting": {
-    "public": "y",
+    "public": "ontimeworkcalculatornodejs/public",
     "ignore": [
       "firebase.json",
       "**/.*",
