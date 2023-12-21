@@ -390,8 +390,8 @@ function initAutocomplete() {
     }
 
     if (
-      durationInMinutes ||
-      durationInMinutes + morningRoutineInMinutes ||
+      durationInMinutes > 1440 ||
+      durationInMinutes + morningRoutineInMinutes > 1440 ||
       durationInMinutes +
         morningRoutineInMinutes +
         desiredHoursOfSleepInMinutes >
@@ -427,19 +427,7 @@ function initAutocomplete() {
     }
   });
 
-  // TEST commented-out code for troubleshooting purposes only (far distance).
-
-  // const test = document.querySelector("#test");
-  // test.addEventListener("click", (e) => {
-  //   desiredHoursOfSleepInput.value = "8:00";
-  //   desiredArrivalTimeInput.value = "9:00am";
-  //   lengthOfMorningRoutineInput.value = "1:00";
-  //   startInputElement.value = "Washington, PA";
-  //   endInputElement.value = "Nebraska, USA";
-  //   form.dispatchEvent(new Event("submit"));
-  // });
-
-  // TEST commented-out code for troubleshooting purposes only (close distance).
+  // TEST commented-out code for troubleshooting purposes only.
 
   // const test = document.querySelector("#test");
   // test.addEventListener("click", (e) => {

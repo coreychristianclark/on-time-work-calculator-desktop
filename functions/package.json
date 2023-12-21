@@ -7,14 +7,15 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "type": "module"
   },
   "engines": {
     "node": "18"
   },
   "main": "index.js",
   "dependencies": {
-    "firebase-admin": "^11.8.0",
+    "firebase-admin": "^11.11.1",
     "firebase-functions": "^4.3.1"
   },
   "devDependencies": {
