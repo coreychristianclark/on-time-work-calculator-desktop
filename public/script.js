@@ -81,9 +81,9 @@ function initAutocomplete() {
   function calculateDistanceAndDuration(start, end) {
     return new Promise((resolve, reject) => {
       let duration;
-      const serverUrl = `https://us-central1-optimal-sleep-calculator-map.cloudfunctions.net/myApp/api/route?start=${start}&end=${end}`;
-
-      // const serverUrl = `https://optimal-sleep-calculator-map.uk.r.appspot.com/api/route?start=${start}&end=${end}`;
+      const encodedStart = encodeURIComponent(start);
+      const encodedEnd = encodeURIComponent(end);
+      const serverUrl = `https://us-central1-optimal-sleep-calculator-map.cloudfunctions.net/myApp/api/route?start=${encodedStart}&end=${encodedEnd}`;
 
       fetch(serverUrl)
         .then((response) => {
@@ -106,7 +106,10 @@ function initAutocomplete() {
             matrixMilesToDestination.innerText = distance;
             matrixDriveTime.innerText = duration;
           } else {
-            console.error("Error: Distance Matrix request failed.");
+            console.error(
+              "Error: Distance Matrix request failed. Verify validity of start and end addresses."
+            );
+            alert("Verify validity of start and end addresses.");
           }
           resolve(duration);
         })
