@@ -2,7 +2,9 @@
 
 A calculator designed to help you maximize your sleep and show up on-time for work.
 
-***Please Note: Functionality of this app cannot be guaranteed when used in conjunction with ad blockers and/or VPN services.***
+**Live Website:** [Check out the live website here!](https://optimal-sleep-calculator-map.firebaseapp.com/)
+
+***Please Note: Functionality of this website cannot be guaranteed when used in conjunction with ad blockers, VPNs, and/or other browser extentions. It is recommended you view the website incognito.***
 
 Obtaining enough sleep in our daily life is absolutely crucial to not only our wellbeing, but our mental clarity as well. Too many people either take their sleep for granted, or don't plan accordingly to ensure they get enough of it. Functioning at peak performance becomes a challenging obstacle when you're low on sleep and feeling physically and mentally sluggish, torpid, and lethargic.
 
@@ -17,4 +19,8 @@ This single source aims to save you time, money, resources, and sleep.
 
 
 
-If you have any questions, suggestions, or notice any errors, please contact me at: coreychristianclark [at] gmail [dot] com.
+If you have any questions, suggestions, or notice any errors, please [reach out!](mailto:coreychristianclark@gmail.com).
+
+![Input half](https://github.com/coreychristianclark/on-time-work-calculator-desktop/assets/127354494/ed74ea8b-93f0-4610-a807-29a8b0c1f077)
+![Map half](https://github.com/coreychristianclark/on-time-work-calculator-desktop/assets/127354494/4d09e8a1-03d5-4b5b-aab6-26391d045460)
+
