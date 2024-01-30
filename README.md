@@ -19,8 +19,8 @@ This single source aims to save you time, money, resources, and sleep.
 
 
 
-If you have any questions, suggestions, or notice any errors, please [reach out!](mailto:coreychristianclark@gmail.com).
+If you have any questions, suggestions, or notice any errors, please [reach out!](mailto:coreychristianclark@gmail.com)
 
-![Input half](https://github.com/coreychristianclark/on-time-work-calculator-desktop/assets/127354494/ed74ea8b-93f0-4610-a807-29a8b0c1f077)
-![Map half](https://github.com/coreychristianclark/on-time-work-calculator-desktop/assets/127354494/4d09e8a1-03d5-4b5b-aab6-26391d045460)
+![Input half](https://github.com/coreychristianclark/on-time-work-calculator-desktop/assets/127354494/c33aa8c4-61fc-49d9-9730-99a54521b7ce)
+![Map half](https://github.com/coreychristianclark/on-time-work-calculator-desktop/assets/127354494/ce674b73-79d0-48fd-9ef3-9daa8115f068)
 
