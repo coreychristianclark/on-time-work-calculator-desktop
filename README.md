@@ -4,7 +4,7 @@ A calculator designed to help you maximize your sleep and show up on time for wo
 
 **Live Website:** [Check out the live website here!](https://optimal-sleep-calculator-map.firebaseapp.com/)
 
-***Please Note: Functionality of this website cannot be guaranteed when used in conjunction with ad blockers, VPNs, and/or other browser extentions. It is recommended you view the website incognito.***
+***Please Note: Functionality of this website cannot be guaranteed when used in conjunction with ad blockers, VPNs, and/or other browser extensions. It is recommended you view the website incognito.***
 
 Obtaining enough sleep in our daily life is absolutely crucial to not only our wellbeing, but our mental clarity as well. Too many people either take their sleep for granted, or don't plan accordingly to ensure they get enough of it. Functioning at peak performance becomes a challenging obstacle when you're low on sleep and feeling physically and mentally sluggish, torpid, and lethargic.
 
